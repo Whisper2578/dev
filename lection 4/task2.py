@@ -4,9 +4,9 @@
 #
 # [[3, 2, 1], [4, 6, 5], [], [9, 7, 8]] -->  [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-
+from itertools import chain
 def flatten_and_sort(array):
-    # Здесь нужно написать код
+    result_list = sorted(list(chain.from_iterable(array)))
     return result_list
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
