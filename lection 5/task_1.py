@@ -7,7 +7,11 @@
 
 
 def letter_stat(our_str):
-    # Здесь нужно написать код
+    """ Функция принимает на вход строку our_str и возвращает словарь letters_dict, где в качестве ключей буквы строки,
+    а значениями являются числа, соответствующие количеству вхождений данной буквы в строку """
+
+    from collections import Counter
+    letters_dict = Counter(our_str)
     return letters_dict
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
