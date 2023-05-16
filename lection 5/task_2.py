@@ -7,7 +7,20 @@
 
 
 def repeats(our_str):
-    # Здесь нужно написать код
+    """ Функция принимает на вход строку our_str, смотрит, сколько раз каждый символ уже встречался, и добавляет
+    количество к символам с помощью постфикса формата _n. Возвращается новая строка"""
+
+    our_str_list = list(our_str)
+    letters_dict = {}
+    new_str = []
+    for char in our_str_list:
+        if char in letters_dict:
+            letters_dict[char] += 1
+        else:
+            letters_dict[char] = 1
+        new_str.append(f'{char}_{letters_dict[char]}')
+    new_str = ''.join(new_str)
+
     return new_str
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
