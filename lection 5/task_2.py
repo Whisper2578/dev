@@ -8,20 +8,25 @@
 
 def repeats(our_str):
     """ Функция принимает на вход строку our_str, смотрит, сколько раз каждый символ уже встречался, и добавляет
-    количество к символам с помощью постфикса формата _n. Возвращается новая строка"""
+    количество к символам с помощью постфикса формата _n. Возвращается новая строка
+
+    :param our_str: Строка
+    :return: Новая строка с добавленным посфиксом формата "_n" после каждого символа, где n - текущее количество
+    вхождений данного символа
+    """
 
     our_str_list = list(our_str)
     letters_dict = {}
-    new_str = []
+    new_list = []
     for char in our_str_list:
         if char in letters_dict:
             letters_dict[char] += 1
         else:
             letters_dict[char] = 1
-        new_str.append(f'{char}_{letters_dict[char]}')
-    new_str = ''.join(new_str)
+        new_list.append(f'{char}_{letters_dict[char]}')
+    new_list = ''.join(new_list)
 
-    return new_str
+    return new_list
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
