@@ -33,9 +33,10 @@ def everything_for_your_cat(cats_data):
         temp = cat[0] + ', ' + str(cat[1])
         result.setdefault(cat[2:], []).append(temp)
     for human_name, cats_info in result.items():
-        owner = (' '.join(human_name) + ': ', '; '.join(cats_info) + '\n')
-        res = ''.join(owner)
-        our_str += str(res)
+        human = ' '.join(human_name)
+        cats = '; '.join(cats_info)
+        owner = f'{human}: {cats}\n'
+        our_str += str(owner)
 
     return our_str
 
