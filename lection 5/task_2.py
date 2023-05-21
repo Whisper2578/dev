@@ -15,18 +15,17 @@ def repeats(our_str):
     вхождений данного символа
     """
 
-    our_str_list = list(our_str)
     letters_dict = {}
-    new_list = []
-    for char in our_str_list:
+    new_str = ''
+    for char in our_str:
         if char in letters_dict:
             letters_dict[char] += 1
+            new_str += f'{char}_{letters_dict[char]}'
         else:
             letters_dict[char] = 1
-        new_list.append(f'{char}_{letters_dict[char]}')
-    new_list = ''.join(new_list)
+            new_str += char + '_1'
 
-    return new_list
+    return new_str
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
