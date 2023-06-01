@@ -47,14 +47,7 @@ class PersonInfo:
         Запись полного пути подразделения
         :return: путь "Головное подразделение --> ... --> Конечное подразделение"
         """
-        str = ''
-        a = len(self.work)
-        i = 0
-        while i < a:
-            str = str + self.work[i]
-            i += 1
-            if i < a:
-                str = str + ' --> '
+        str = ' --> '.join(self.work)
         return (str)
 
     def new_salary(self):
@@ -63,15 +56,14 @@ class PersonInfo:
         из списка подразделений
         :return: Индекс зарплаты
         """
-        our_work = str(self.work)
-        trans_table = {ord(',') : None, ord(':') : None, ord('.') : None, ord('(') : None, ord(')') : None,
-                           ord('\'') : None, ord(' ') : None}
-        our_work = our_work.translate(trans_table)
+        our_work = ','.join(self.work)
+        
         letters_dict = {}
         for char in our_work:
             letters_dict[char] = our_work.count(char)
         sort_list = sorted(letters_dict.values())
-        new_salary = (int(sort_list[-1]) + int(sort_list[-2]) + int(sort_list[-3])) * self.age * 1337
+        new_salary = sum(sort_list[-1:-4:-1]) * self.age * 1337
+
         return (new_salary)
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
