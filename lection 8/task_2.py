@@ -23,7 +23,7 @@ class Trigon:
 
         if len(args) != 3:
             raise IndexError(f'Передано {len(args)} аргументов, а ожидается 3')
-        elif type(args[0]) != int or type(args[1]) != int or type(args[2]) != int:
+        elif not all(map(lambda i: isinstance(i, int), args)):
             raise TypeError('Стороны должны быть числами')
         elif args[0] <= 0 or args[1] <= 0 or args[2] <= 0:
             raise ValueError('Стороны должны быть положительными')
