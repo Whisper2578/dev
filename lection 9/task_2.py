@@ -34,31 +34,28 @@
 
 import datetime
 import time
+def func_log(file_log='log.txt'):
+    def decorator(func):
+        def logger(*args, **kwargs):
+            with open(file_log, 'a', encoding='utf-8') as f:
+                f.write(f'{func.__name__} вызвана {datetime.datetime.now().strftime("%d.%m %H:%M:%S")}\n')
+            result = func(*args, **kwargs)
+            return result
+        return logger
+    return decorator
 
-def func_log(func):
-    def logger(file_log='log.txt'):
-        now_time = datetime.datetime.now()
-        line = str(f'{func.__name__} вызвана ') + now_time.strftime('%d.%m %H:%M:%S\n')
-        with open(file_log, 'a', encoding='utf-8') as file_res:
-            file_res.write(line)
-        func()
-
-    return logger
-
-@func_log
+@func_log()
 def func1():
+    print('Функция 1')
     time.sleep(3)
 
-@func_log
+# help(func1)
+
+@func_log(file_log='func2.txt')
 def func2():
-    time.sleep(5)
-
-@func_log
-def func3():
+    print('Функция 2')
     time.sleep(5)
 
 func1()
-func2(file_log='func2.txt')
+func2()
 func1()
-func2(file_log='func2.txt')
-func3(file_log='func3.txt')

@@ -11,8 +11,6 @@ with open('test_file/task1_data.txt', mode='r', encoding='utf-8') as file1:
         text = text.replace(digits, '')
     with open('test_file/task1_answer.txt', mode='w', encoding='utf-8') as file2:
         file2.write(text)
-file1.close()
-file2.close()
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
