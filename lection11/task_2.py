@@ -14,7 +14,7 @@ fix_online = 'https://fix-online.sbis.ru/'
 message_xpath = '//p[contains(text(),"Привет!")]'
 driver = webdriver.Chrome()
 try:
-    print('Входим на сайт https://fix-online.sbis.ru/')
+    print('Открываем сайт https://fix-online.sbis.ru/')
     driver.get(fix_online)
 
     print('Вводим логин')
@@ -64,12 +64,16 @@ try:
     sleep(2)
     driver.find_element(By.CSS_SELECTOR, '.controls-Toolbar_content.controls-Toolbar_content-vertical > div[title="Удалить"]').click()
 
-    print('Проверяем что наше сообщение отсутствует в реестре сообщений')
+    print('Вводим в поисковой строке реестра сообщений текст нашего сообщения')
     sleep(2)
-    assert driver.find_element(By.XPATH, message_xpath), 'Сообщения нет в списке'
+    driver.find_element(By.CSS_SELECTOR, '.controls-Field.js-controls-Field.controls-InputBase__nativeField_hideCustomPlaceholder').send_keys('Привет!', Keys.ENTER)
+
+    print('Проверяем наличие сообщения "Не найдено ни одного сообщения"')
+    sleep(2)
+    assert driver.find_element(By.CSS_SELECTOR, '.hint-Template__text_message_m_withOffset').get_attribute('textContent') == 'Не найдено ни одного сообщения'
 
     print('Тест успешно пройден')
-    sleep(5)
+    sleep(2)
 
 finally:
     driver.quit()
