@@ -11,10 +11,12 @@ from selenium.webdriver import Keys
 from time import sleep
 
 fix_online = 'https://fix-online.sbis.ru/'
+message_text = 'Привет!'
 message_xpath = '//p[contains(text(),"Привет!")]'
+error_message = 'Не найдено ни одного сообщения'
 driver = webdriver.Chrome()
 try:
-    print('Открываем сайт https://fix-online.sbis.ru/')
+    print(f'Открываем сайт {fix_online}')
     driver.get(fix_online)
 
     print('Вводим логин')
@@ -50,7 +52,7 @@ try:
 
     print('Пишем и отправляем сообщение')
     sleep(2)
-    driver.find_element(By.CSS_SELECTOR, '[data-slate-node="element"]').send_keys('Привет!', Keys.CONTROL + Keys.ENTER)
+    driver.find_element(By.CSS_SELECTOR, '[data-slate-node="element"]').send_keys(message_text, Keys.CONTROL + Keys.ENTER)
 
     print('Проверяем, что наше сообщение есть в реестре сообщений')
     sleep(2)
@@ -66,11 +68,11 @@ try:
 
     print('Вводим в поисковой строке реестра сообщений текст нашего сообщения')
     sleep(2)
-    driver.find_element(By.CSS_SELECTOR, '.controls-Field.js-controls-Field.controls-InputBase__nativeField_hideCustomPlaceholder').send_keys('Привет!', Keys.ENTER)
+    driver.find_element(By.CSS_SELECTOR, '.controls-Field.js-controls-Field.controls-InputBase__nativeField_hideCustomPlaceholder').send_keys(message_text, Keys.ENTER)
 
     print('Проверяем наличие сообщения "Не найдено ни одного сообщения"')
     sleep(2)
-    assert driver.find_element(By.CSS_SELECTOR, '.hint-Template__text_message_m_withOffset').get_attribute('textContent') == 'Не найдено ни одного сообщения'
+    assert driver.find_element(By.CSS_SELECTOR, '.hint-Template__text_message_m_withOffset').get_attribute('textContent') == error_message
 
     print('Тест успешно пройден')
     sleep(2)

@@ -24,8 +24,8 @@ try:
 
     sleep(1)
     contacts_btn = driver.find_element(By.CSS_SELECTOR, '.sbisru-Header__menu-item-1')
-    assert contacts_btn.text == 'Контакты', 'Текст кнопки отличается от шаблона'
     assert contacts_btn.is_displayed(), 'Исследуемая кнопка не отображается на странице'
+    assert contacts_btn.text == 'Контакты', 'Текст кнопки отличается от шаблона'
     contacts_btn.click()
 
     sleep(1)
@@ -42,13 +42,13 @@ try:
     ActionChains(driver).scroll_to_element(strength_in_people).perform()
 
     sleep(2)
-    assert 'Сила в людях' in str(strength_in_people.get_attribute('textContent')), 'Искомый текст не найден в блоке'
     assert strength_in_people.is_displayed(), 'Исследуемая новость не отображается на странице'
+    assert 'Сила в людях' in str(strength_in_people.get_attribute('textContent')), 'Искомый текст не найден в блоке'
 
     sleep(1)
     sip_more = driver.find_element(By.CSS_SELECTOR, '.tensor_ru-Index__block4-content.tensor_ru-Index__card p a')
-    assert sip_more.text == 'Подробнее', 'Текст ссылки подробностей отличается от шаблона'
     assert sip_more.is_displayed()
+    assert sip_more.text == 'Подробнее', 'Текст ссылки подробностей отличается от шаблона'
     sip_more.click()
 
     assert driver.current_url == tensor_about, 'Выполнено перенаправление на неверный URL-адрес'
