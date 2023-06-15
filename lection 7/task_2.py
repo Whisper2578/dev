@@ -57,7 +57,7 @@ class PersonInfo:
         :return: Индекс зарплаты
         """
         our_work = ','.join(self.work)
-        
+
         letters_dict = {}
         for char in our_work:
             letters_dict[char] = our_work.count(char)
