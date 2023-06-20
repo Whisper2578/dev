@@ -2,29 +2,22 @@ from atf.ui import *
 from controls import *
 
 
-class TaskRegistry(Region):
-    """Реестр Задач"""
+class ContactsRegistry(Region):
+    """Реестр контактов"""
 
-    folders = ControlsTreeGridView(By.CSS_SELECTOR, '.controls-MasterDetail_master .controls-Grid', 'Папки')
-    tasks = ControlsTreeGridView(By.CSS_SELECTOR, '.brTasksOnMe .controls-Grid', 'Задачи в работе')
-    task_ctrl = ControlsTreeGridView(By.CSS_SELECTOR, '.brTasksCtrl .controls-Grid', 'Задачи на контроле')
-    search = ControlsSearchInput()
-    tabs = ControlsTabsButtons()
+    message_folders = ControlsTreeGridView(By.CSS_SELECTOR, '[name="grid"]', 'Папка сообщений')
+    messages = ControlsListView(By.CSS_SELECTOR, '[data-qa="list"].Hint-ListWrapper_list', 'Сообщения')
+    context_menu = ControlsPopup(By.CSS_SELECTOR, '.controls-Menu__popup-template', 'Контекстное меню')
+    to_move = ControlsTreeGridView(By.CSS_SELECTOR, '[data-qa="list"].controls-Explorer__view', 'Куда переместить')
+    bookmarks = ControlsTabsButtons(By.CSS_SELECTOR, '[name="wrapper"]', 'Закладки')
+    chats = ControlsListView(By.CSS_SELECTOR, '.msg-CorrespondenceMaster', 'Чаты')
+    tags_folder = ControlsListView(By.CSS_SELECTOR, '.tags-list', 'Папка для тэгов')
+    chat_list = ControlsListView(By.CSS_SELECTOR, '[name="scrollWrapper"] [name="userContent"]', 'Список сообщений')
+    select_marker = ControlsListView(By.CSS_SELECTOR, '.msg-tags-aggregate__scrollContainer', 'Выбор маркера')
+
 
     def check_load(self):
         """Проверка загрузки реестра"""
 
-        self.folders.check_load()
-        self.tasks.check_load()
-
-    def search_task(self, task):
-        """Поиск задачи"""
-
-        self.search.search(task, search_btn_click=True)
-        self.tasks.row(contains_text=task).should_be(Displayed)
-
-    def select_tab(self, tab):
-        """Переключение по вкладкам"""
-
-        self.tabs.select(tab)
-        self.task_ctrl.check_load()
+        self.message_folders.check_load()
+        self.messages.check_load()
